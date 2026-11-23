@@ -139,9 +139,9 @@ export default function WebDevPage() {
                 <Sparkles className="h-3.5 w-3.5 text-[#FF5A36]" />
                 Service 04 · Website Development
               </span>
-              <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 font-display text-[34px] font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:mt-6 sm:text-5xl lg:text-6xl">
                 High-Converting{' '}
-                <span className="bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text text-transparent">
+                <span className="font-luxury-italic bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text pr-1 text-[1.12em] text-transparent">
                   3D &amp; Modern Websites
                 </span>{' '}
                 Built to Sell.
@@ -188,7 +188,28 @@ export default function WebDevPage() {
                   </span>
                 </div>
 
-                <DeviceShowcase3DCanvas className="h-[410px] w-full bg-gradient-to-br from-[#F9FAFB] via-[#EEF2FF]/50 to-[#FFF4F1]/45" />
+                <DeviceShowcase3DCanvas className="h-[300px] w-full bg-gradient-to-br from-[#F9FAFB] via-[#EEF2FF]/50 to-[#FFF4F1]/45 sm:h-[400px]" />
+
+                {/* Real Web Flagship Editorial Photo Strip */}
+                <div className="mt-4 overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white">
+                  <div className="grid grid-cols-12 items-center">
+                    <div className="col-span-5 h-24 sm:h-28">
+                      <img
+                        src="/images/service-web-dev.jpg"
+                        alt="SRYN Media 3D Website Development Studio"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="col-span-7 p-3.5 sm:p-4">
+                      <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#4F46E5]">
+                        Luxury Desktop + Mobile Craft
+                      </p>
+                      <p className="mt-1 font-display text-xs font-bold text-[#111827] sm:text-sm">
+                        Pixel-sharp editorial flagships engineered for 99/100 speed.
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 text-xs font-medium text-[#4B5563]">
                   <span className="inline-flex items-center gap-1.5 font-semibold text-[#111827]">

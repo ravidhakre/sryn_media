@@ -129,14 +129,15 @@ export default function SeoServicePage() {
                 <Sparkles className="h-3.5 w-3.5 text-[#FF5A36]" />
                 Service 03 · SEO Service
               </span>
-              <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 font-display text-[34px] font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:mt-6 sm:text-5xl lg:text-6xl">
                 Own the{' '}
-                <span className="text-[#4F46E5]">#1 Google Spot</span> Where High-Intent Buyers Search.
+                <span className="font-luxury-italic text-[1.12em] text-[#4F46E5]">#1 Google Spot</span>{' '}
+                Where High-Intent Buyers Search.
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-[#4B5563]">
                 Stop renting every click forever. SRYN Media builds bulletproof Technical SEO, authoritative content ecosystems, and Local GMB 3-Pack rankings that deliver compounding inbound leads month after month.
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
                 <Link to="/contact?service=SEO%20Service" className="btn-coral px-7 py-3.5 text-sm">
                   <span>Get Free SEO Audit</span>
                   <ArrowUpRight className="h-4 w-4" />
@@ -144,6 +145,27 @@ export default function SeoServicePage() {
                 <a href="#seo-checklist" className="btn-indigo-outline px-6 py-3.5 text-sm">
                   Explore SEO Checklist
                 </a>
+              </div>
+
+              {/* Real SEO Studio Visual Preview */}
+              <div className="mt-8 overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white/90 p-2.5 shadow-glass backdrop-blur-md">
+                <div className="grid grid-cols-12 items-center gap-3">
+                  <div className="col-span-5 h-24 overflow-hidden rounded-2xl sm:h-28">
+                    <img
+                      src="/images/service-seo.jpg"
+                      alt="SRYN Media SEO Growth Architecture"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="col-span-7 pr-2">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#FF5A36]">
+                      Organic Dominance Engine
+                    </span>
+                    <p className="mt-1 font-display text-sm font-bold text-[#111827] sm:text-base">
+                      +240% Avg. Organic Growth Across Technical &amp; Local GMB
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 

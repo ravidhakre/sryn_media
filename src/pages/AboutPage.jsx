@@ -83,9 +83,9 @@ export default function AboutPage() {
                 <Sparkles className="h-3.5 w-3.5 text-[#FF5A36]" />
                 About SRYN Media · {COMPANY_INFO.parentCompany}
               </span>
-              <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 font-display text-[34px] font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:mt-6 sm:text-5xl lg:text-6xl">
                 From Agra&apos;s Heritage of Craft to{' '}
-                <span className="bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text text-transparent">
+                <span className="font-luxury-italic bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text pr-1 text-[1.12em] text-transparent">
                   Global Digital Dominance
                 </span>
                 .
@@ -107,16 +107,27 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="glass-card-strong rounded-[32px] p-4">
+              <div className="glass-card-strong rounded-[28px] p-3.5 sm:rounded-[32px] sm:p-4">
+                <div className="relative overflow-hidden rounded-[22px] border border-[#E5E7EB]">
+                  <img
+                    src={COMPANY_INFO.studioImage}
+                    alt="SRYN Management PVT LTD Digital Studio"
+                    className="h-[240px] w-full object-cover sm:h-[280px]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/85 via-transparent to-transparent" />
+                  <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-3 py-1 font-mono text-[10.5px] font-bold text-[#4F46E5] shadow-sm">
+                    SRYN Media Creative Studio
+                  </span>
+                </div>
                 <HeroAccent3DCanvas
                   variant="prism"
-                  className="h-[340px] w-full bg-gradient-to-br from-[#F9FAFB] to-[#EEF2FF]/60"
+                  className="mt-3 h-[210px] w-full bg-gradient-to-br from-[#F9FAFB] to-[#EEF2FF]/60 sm:h-[230px]"
                 />
-                <div className="mt-3 flex items-center justify-between px-3 py-1">
-                  <span className="font-mono text-xs font-semibold text-[#4F46E5]">
+                <div className="mt-2.5 flex items-center justify-between px-2 py-1">
+                  <span className="font-mono text-[11px] font-semibold text-[#4F46E5]">
                     The SRYN Prism · Creative × Data
                   </span>
-                  <span className="inline-flex items-center gap-1 font-mono text-xs font-bold text-[#FF5A36]">
+                  <span className="inline-flex items-center gap-1 font-mono text-[11px] font-bold text-[#FF5A36]">
                     <Globe2 className="h-3.5 w-3.5" /> Global Delivery
                   </span>
                 </div>

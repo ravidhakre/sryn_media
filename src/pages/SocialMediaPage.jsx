@@ -135,9 +135,9 @@ export default function SocialMediaPage() {
                 <Sparkles className="h-3.5 w-3.5 text-[#FF5A36]" />
                 Service 01 · Social Media Management
               </span>
-              <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 font-display text-[34px] font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:mt-6 sm:text-5xl lg:text-6xl">
                 Turn Your Feed Into a{' '}
-                <span className="bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text text-transparent">
+                <span className="font-luxury-italic bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text pr-1 text-[1.12em] text-transparent">
                   Viral Brand Magnet
                 </span>
                 .
@@ -186,7 +186,28 @@ export default function SocialMediaPage() {
                   </span>
                 </div>
 
-                <SocialPhone3DCanvas className="h-[430px] w-full bg-gradient-to-br from-[#F9FAFB] via-[#EEF2FF]/50 to-[#FFF4F1]/50" />
+                <SocialPhone3DCanvas className="h-[310px] w-full bg-gradient-to-br from-[#F9FAFB] via-[#EEF2FF]/50 to-[#FFF4F1]/50 sm:h-[420px]" />
+
+                {/* Real Editorial Service Photography Preview Strip */}
+                <div className="mt-4 overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white">
+                  <div className="grid grid-cols-12 items-center">
+                    <div className="col-span-5 h-24 sm:h-28">
+                      <img
+                        src="/images/service-social-media.jpg"
+                        alt="SRYN Media Social Media Studio Production"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="col-span-7 p-3.5 sm:p-4">
+                      <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#FF5A36]">
+                        Real Studio Production
+                      </p>
+                      <p className="mt-1 font-display text-xs font-bold text-[#111827] sm:text-sm">
+                        Art-directed Reels, editorial grids &amp; CGI product shoots.
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="mt-4 grid grid-cols-3 gap-3">
                   <div className="flex items-center gap-2.5 rounded-2xl border border-[#E5E7EB] bg-white px-3.5 py-2.5">

@@ -87,7 +87,7 @@ export default function BrandLogo({ size = 'md', showTagline = false }) {
 
       {/* Brand Wordmark */}
       <div className="flex flex-col leading-none">
-        <div className={`flex items-baseline gap-1.5 font-display ${titleSize}`}>
+        <div className={`flex items-baseline gap-1.5 font-logo ${titleSize}`}>
           <span className="font-extrabold tracking-[0.08em] text-[#111827]">SRYN</span>
           <span className="bg-gradient-to-r from-[#4F46E5] via-[#6366F1] to-[#FF5A36] bg-clip-text font-bold tracking-tight text-transparent">
             Media

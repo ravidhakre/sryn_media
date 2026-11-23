@@ -16,7 +16,9 @@ export default {
         hairline: '#E5E7EB',
       },
       fontFamily: {
-        display: ['Syne', 'sans-serif'],
+        display: ['Outfit', 'system-ui', 'sans-serif'],
+        logo: ['Syne', 'sans-serif'],
+        editorial: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },

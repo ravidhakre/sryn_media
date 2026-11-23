@@ -6,8 +6,8 @@ import { COMPANY_INFO, SERVICES_LIST } from '../data/siteData';
 
 export default function MegaFooter() {
   return (
-    <footer className="relative z-20 border-t border-[#E5E7EB] bg-[#EEF2F6]">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="relative z-20 border-t border-[#E5E7EB] bg-[#EEF2F6] pb-24 md:pb-0">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         {/* Top Conversion Banner */}
         <div className="relative mb-16 overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-r from-white via-[#F9FAFB] to-[#EEF2FF] p-8 shadow-glass sm:p-12">
           <div

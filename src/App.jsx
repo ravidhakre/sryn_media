@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import MegaFooter from './components/MegaFooter';
+import MobileActionDock from './components/MobileActionDock';
 import ScrollToTop from './components/ScrollToTop';
 
 import HomePage from './pages/HomePage';
@@ -36,6 +37,7 @@ export default function App() {
           </Routes>
         </main>
         <MegaFooter />
+        <MobileActionDock />
       </div>
     </BrowserRouter>
   );

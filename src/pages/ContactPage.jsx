@@ -71,9 +71,9 @@ export default function ContactPage() {
               <Sparkles className="h-3.5 w-3.5 text-[#FF5A36]" />
               Contact SRYN Media
             </span>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 font-display text-[34px] font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:mt-6 sm:text-5xl lg:text-6xl">
               Let&apos;s Architect Your Next{' '}
-              <span className="bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text text-transparent">
+              <span className="font-luxury-italic bg-gradient-to-r from-[#4F46E5] to-[#FF5A36] bg-clip-text pr-1 text-[1.12em] text-transparent">
                 Growth Breakthrough
               </span>
               .
@@ -313,7 +313,14 @@ export default function ContactPage() {
               </Tilt3DCard>
 
               {/* Office Location Details Card */}
-              <div className="glass-card-strong rounded-3xl p-7">
+              <div className="glass-card-strong overflow-hidden rounded-3xl p-6 sm:p-7">
+                <div className="mb-5 overflow-hidden rounded-2xl border border-[#E5E7EB]">
+                  <img
+                    src={COMPANY_INFO.studioImage}
+                    alt="SRYN Management PVT LTD Agra Studio"
+                    className="h-36 w-full object-cover"
+                  />
+                </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2.5 text-[#4F46E5]">
                     <Building2 className="h-5 w-5" />

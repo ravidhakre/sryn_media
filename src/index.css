@@ -7,46 +7,56 @@
     background-color: #F9FAFB;
     color: #111827;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     background-color: #F9FAFB;
     color: #111827;
-    overflow-x: hidden;
+    overflow-x: clip;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
   h1, h2, h3, h4, .font-display {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Outfit', system-ui, sans-serif;
+    letter-spacing: -0.025em;
   }
 }
 
 @layer components {
+  .font-luxury-italic {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
   .glass-card {
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     border: 1px solid #E5E7EB;
     box-shadow: 0 20px 50px -20px rgba(17, 24, 39, 0.08), 0 4px 16px -4px rgba(79, 70, 229, 0.05);
   }
 
   .glass-card-strong {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
     border: 1px solid rgba(229, 231, 235, 0.95);
     box-shadow: 0 24px 60px -22px rgba(17, 24, 39, 0.09), 0 4px 18px -4px rgba(79, 70, 229, 0.06);
   }
 
   .glass-header {
-    background: rgba(249, 250, 251, 0.82);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: rgba(249, 250, 251, 0.86);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(229, 231, 235, 0.85);
   }
 
   .btn-coral {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#FF5A36] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#FF5A36] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out active:scale-[0.98];
     box-shadow: 0 12px 26px -8px rgba(255, 90, 54, 0.45);
   }
 
@@ -56,12 +66,12 @@
   }
 
   .btn-indigo-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-[#E5E7EB] bg-white/85 px-6 py-3 text-sm font-semibold text-[#111827] backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[#4F46E5]/40 hover:text-[#4F46E5];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-[#E5E7EB] bg-white/90 px-6 py-3 text-sm font-semibold text-[#111827] backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[#4F46E5]/40 hover:text-[#4F46E5] active:scale-[0.98];
     box-shadow: 0 8px 20px -10px rgba(17, 24, 39, 0.08);
   }
 
   .editorial-pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-[#4F46E5]/15 bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#4F46E5] backdrop-blur-md;
+    @apply inline-flex items-center gap-2 rounded-full border border-[#4F46E5]/15 bg-white/85 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4F46E5] backdrop-blur-md;
   }
 
   .editorial-grid-bg {
@@ -90,7 +100,16 @@
   background: #4F46E5;
 }
 
-/* Custom range slider for Paid Ads ROAS estimator */
+/* Hide horizontal scrollbar on custom pill rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom range slider for Paid Ads & AI calculators */
 input[type='range'].sryn-range {
   -webkit-appearance: none;
   appearance: none;

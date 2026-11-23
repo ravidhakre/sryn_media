@@ -119,9 +119,12 @@ export default function PaidAdsPage() {
                 <Sparkles className="h-3.5 w-3.5 text-[#FF5A36]" />
                 Service 02 · Paid Ads Management
               </span>
-              <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 font-display text-[34px] font-extrabold leading-[1.06] tracking-tight text-[#111827] sm:mt-6 sm:text-5xl lg:text-6xl">
                 Precision Ad Funnels Engineered for{' '}
-                <span className="text-[#4F46E5]">3.8x+ Predictable ROAS</span>.
+                <span className="font-luxury-italic text-[1.12em] text-[#4F46E5]">
+                  3.8x+ Predictable ROAS
+                </span>
+                .
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-[#4B5563]">
                 We turn Meta Ads and Google Ads from unpredictable cost centers into transparent, math-backed customer acquisition machines—powered by server-side tracking and rapid creative testing.
@@ -141,16 +144,27 @@ export default function PaidAdsPage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="glass-card-strong rounded-[32px] p-4">
+              <div className="glass-card-strong rounded-[28px] p-3.5 sm:rounded-[32px] sm:p-4">
+                <div className="relative overflow-hidden rounded-[22px] border border-[#E5E7EB]">
+                  <img
+                    src="/images/service-paid-ads.jpg"
+                    alt="SRYN Media Paid Ads Performance Studio"
+                    className="h-[230px] w-full object-cover sm:h-[270px]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/85 via-transparent to-transparent" />
+                  <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-3 py-1 font-mono text-[10.5px] font-bold text-[#4F46E5] shadow-sm">
+                    3.8x Blended ROAS Desk
+                  </span>
+                </div>
                 <HeroAccent3DCanvas
                   variant="bars"
-                  className="h-[330px] w-full bg-gradient-to-br from-[#F9FAFB] to-[#EEF2FF]/60"
+                  className="mt-3 h-[210px] w-full bg-gradient-to-br from-[#F9FAFB] to-[#EEF2FF]/60 sm:h-[230px]"
                 />
-                <div className="mt-3 flex items-center justify-between px-3 py-1">
-                  <span className="font-mono text-xs font-semibold text-[#4F46E5]">
+                <div className="mt-2.5 flex items-center justify-between px-2 py-1">
+                  <span className="font-mono text-[11px] font-semibold text-[#4F46E5]">
                     3D ROI Pillars · Drag to Inspect
                   </span>
-                  <span className="font-mono text-xs font-bold text-[#FF5A36]">CAPI + GA4 Verified</span>
+                  <span className="font-mono text-[11px] font-bold text-[#FF5A36]">CAPI + GA4 Verified</span>
                 </div>
               </div>
             </div>

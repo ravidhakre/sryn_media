@@ -5,9 +5,11 @@ export const COMPANY_INFO = {
   address: '21/272/1/4-A Patel Nagar, Jeoni Mandi, Agra 282004',
   phoneDisplay: '+91 8433206010',
   phoneHref: 'tel:+918433206010',
-  whatsappHref: 'https://wa.me/918433206010?text=Hello%20SRYN%20Media!%20I%20would%20like%20to%20book%20a%20Free%20Growth%20Audit.',
+  whatsappHref:
+    'https://wa.me/918433206010?text=Hello%20SRYN%20Media!%20I%20would%20like%20to%20book%20a%20Free%20Growth%20Audit.',
   email: 'hello@srynmedia.com',
   copyright: '© 2026 SRYN Management PVT LTD. All rights reserved.',
+  studioImage: '/images/about-studio.jpg',
 };
 
 export const SERVICES_LIST = [
@@ -19,6 +21,8 @@ export const SERVICES_LIST = [
     tagline: 'Scroll-stopping Reels, CGI brand stories & loyal community architecture.',
     metric: '4.2M+ Organic Reach',
     accent: 'coral',
+    image: '/images/service-social-media.jpg',
+    imageAlt: 'Luxury editorial studio photography for SRYN Media Social Media Management',
     description:
       'Editorial content engines, viral short-form video production, and daily community management that turn passive scrollers into brand advocates.',
     highlights: ['Instagram & LinkedIn Grids', 'Viral Reels & CGI Hooks', 'Creator & Community Growth'],
@@ -31,6 +35,8 @@ export const SERVICES_LIST = [
     tagline: 'Precision Meta & Google ad funnels engineered for compounding ROAS.',
     metric: '3.8x Average ROAS',
     accent: 'indigo',
+    image: '/images/service-paid-ads.jpg',
+    imageAlt: 'High-ROAS Meta and Google Paid Ads analytics studio showcase',
     description:
       'Full-funnel media buying, high-velocity creative testing, and omnichannel retargeting built to turn predictable ad budgets into scalable revenue.',
     highlights: ['Meta & Google Performance', 'Creative Sprint Testing', 'Full-Funnel Retargeting'],
@@ -43,6 +49,8 @@ export const SERVICES_LIST = [
     tagline: 'Capture #1 high-intent Google rankings & dominate Local GMB search.',
     metric: '+240% Organic Traffic',
     accent: 'indigo',
+    image: '/images/service-seo.jpg',
+    imageAlt: 'Crystal growth pillars and search lens representing #1 Google SEO rankings',
     description:
       'Technical architecture, semantic content authority, and hyper-local Google Business Profile optimization that deliver compounding inbound demand.',
     highlights: ['Technical & Core Web Vitals', 'Authority Content Clusters', 'Local GMB 3-Pack Dominance'],
@@ -55,6 +63,8 @@ export const SERVICES_LIST = [
     tagline: 'Luxury 3D interactive websites & ultra-fast conversion storefronts.',
     metric: '99/100 Speed Score',
     accent: 'coral',
+    image: '/images/service-web-dev.jpg',
+    imageAlt: 'Modern laptop and mobile flagship showcasing luxury 3D web development',
     description:
       'Bespoke React, WebGL/3D, and mobile-first flagships engineered with editorial aesthetics and ruthless conversion-rate optimization.',
     highlights: ['3D & WebGL Experiences', 'Conversion-First UI/UX', 'Sub-Second Performance'],
@@ -67,51 +77,100 @@ export const SERVICES_LIST = [
     tagline: 'Autonomous AI agents, WhatsApp funnels & CRM workflows running 24/7.',
     metric: '24/7 Instant Response',
     accent: 'indigo',
+    image: '/images/service-ai-setup.jpg',
+    imageAlt: 'Luminous neural core and automated AI WhatsApp & CRM workflow setup',
     description:
       'End-to-end AI operational infrastructure: instant lead qualification bots, automated WhatsApp follow-ups, CRM sync, and zero-friction calendar booking.',
     highlights: ['AI WhatsApp & Web Agents', 'CRM Pipeline Automation', 'Auto-Booked Sales Calls'],
   },
 ];
 
-export const HERO_SLIDES = [
+// 5-Slide 8D Spatial Scrolling Slider Data (Real Service Images + Depth Metadata)
+export const SPATIAL_8D_SLIDES = [
   {
     id: 1,
+    code: '01',
     badge: 'Performance Engine',
     metric: '3.8x',
+    metricLabel: 'Average ROAS',
     title: '3.8x Average ROAS',
+    subtitle: 'Paid Ads Management',
     description:
-      'Data-backed Meta & Google ad campaigns that turn ad spend into predictable revenue.',
-    tags: ['Meta Ads', 'Google Search', 'Conversion Tracking'],
+      'Data-backed Meta & Google ad campaigns with CAPI tracking that turn predictable ad spend into compounding revenue.',
+    tags: ['Meta Ads', 'Google PMax', 'Full-Funnel Retargeting'],
     accent: '#4F46E5',
     secondaryAccent: '#FF5A36',
+    image: '/images/service-paid-ads.jpg',
     link: '/services/paid-ads-management',
     linkLabel: 'Explore Paid Ads',
   },
   {
     id: 2,
+    code: '02',
     badge: 'Digital Flagship',
     metric: '99+',
+    metricLabel: 'Speed Score',
     title: 'High-Converting 3D & Modern Web',
+    subtitle: 'Website Development',
     description:
-      'Fast, mobile-first websites designed to turn visitors into paying clients.',
+      'Ultra-fast, mobile-first 3D editorial websites designed to elevate brand luxury and turn visitors into paying clients.',
     tags: ['Interactive 3D', 'Luxury Editorial UI', 'CRO Engineered'],
     accent: '#FF5A36',
     secondaryAccent: '#4F46E5',
+    image: '/images/service-web-dev.jpg',
     link: '/services/website-development',
     linkLabel: 'Explore Web Dev',
   },
   {
     id: 3,
+    code: '03',
     badge: 'Autonomous Growth',
     metric: '24/7',
+    metricLabel: 'AI Response',
     title: 'AI-First Business Setup',
+    subtitle: 'Business Setup with AI',
     description:
-      'Smart AI agents, automated WhatsApp funnels, and CRM workflows working 24/7.',
-    tags: ['AI Lead Bots', 'WhatsApp Funnels', 'CRM Sync'],
+      'Smart AI qualification bots, automated WhatsApp funnels, and CRM workflows capturing & booking meetings around the clock.',
+    tags: ['AI WhatsApp Bots', 'CRM Sync', 'Auto-Booking'],
     accent: '#4F46E5',
     secondaryAccent: '#0EA5E9',
+    image: '/images/service-ai-setup.jpg',
     link: '/services/business-setup-with-ai',
     linkLabel: 'Explore AI Setup',
+  },
+  {
+    id: 4,
+    code: '04',
+    badge: 'Viral Brand Orbit',
+    metric: '4.2M+',
+    metricLabel: 'Organic Reach',
+    title: 'Viral Social & CGI Storytelling',
+    subtitle: 'Social Media Management',
+    description:
+      'Thumb-stopping Instagram grids, high-retention Reels, and CGI hooks that convert everyday scrollers into loyal brand buyers.',
+    tags: ['Viral Reels', 'Editorial Grids', 'DM Funnels'],
+    accent: '#FF5A36',
+    secondaryAccent: '#4F46E5',
+    image: '/images/service-social-media.jpg',
+    link: '/services/social-media-management',
+    linkLabel: 'Explore Social Media',
+  },
+  {
+    id: 5,
+    code: '05',
+    badge: 'Search Authority',
+    metric: '#1',
+    metricLabel: 'Google & GMB',
+    title: 'Google #1 Organic & Local SEO',
+    subtitle: 'SEO Service',
+    description:
+      'Technical SEO precision, semantic authority clusters, and Local GMB 3-Pack dominance driving high-intent inbound demand.',
+    tags: ['Technical SEO', 'Local GMB 3-Pack', '+240% Traffic'],
+    accent: '#4F46E5',
+    secondaryAccent: '#FF5A36',
+    image: '/images/service-seo.jpg',
+    link: '/services/seo-service',
+    linkLabel: 'Explore SEO Service',
   },
 ];
 
