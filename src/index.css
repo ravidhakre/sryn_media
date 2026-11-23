@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #F9FAFB;
+    color: #111827;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #F9FAFB;
+    color: #111827;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 20px 50px -20px rgba(17, 24, 39, 0.08), 0 4px 16px -4px rgba(79, 70, 229, 0.05);
+  }
+
+  .glass-card-strong {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(229, 231, 235, 0.95);
+    box-shadow: 0 24px 60px -22px rgba(17, 24, 39, 0.09), 0 4px 18px -4px rgba(79, 70, 229, 0.06);
+  }
+
+  .glass-header {
+    background: rgba(249, 250, 251, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.85);
+  }
+
+  .btn-coral {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#FF5A36] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out;
+    box-shadow: 0 12px 26px -8px rgba(255, 90, 54, 0.45);
+  }
+
+  .btn-coral:hover {
+    @apply -translate-y-0.5 bg-[#F04422];
+    box-shadow: 0 18px 34px -8px rgba(255, 90, 54, 0.55);
+  }
+
+  .btn-indigo-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-[#E5E7EB] bg-white/85 px-6 py-3 text-sm font-semibold text-[#111827] backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[#4F46E5]/40 hover:text-[#4F46E5];
+    box-shadow: 0 8px 20px -10px rgba(17, 24, 39, 0.08);
+  }
+
+  .editorial-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-[#4F46E5]/15 bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#4F46E5] backdrop-blur-md;
+  }
+
+  .editorial-grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(79, 70, 229, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(79, 70, 229, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+/* Custom refined scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4F46E5;
+}
+
+/* Custom range slider for Paid Ads ROAS estimator */
+input[type='range'].sryn-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #4F46E5 0%, #FF5A36 100%);
+  outline: none;
+}
+
+input[type='range'].sryn-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  border: 3px solid #4F46E5;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+input[type='range'].sryn-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  border-color: #FF5A36;
+}
