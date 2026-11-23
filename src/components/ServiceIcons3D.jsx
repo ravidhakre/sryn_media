@@ -1,5 +1,65 @@
 import React from 'react';
 
+/**
+ * Crisp, minimal logo-style duotone icons specifically designed for the
+ * sleek executive Services dropdown & mobile submenu.
+ */
+export function ServiceMenuIcon({ id, className = 'w-5 h-5' }) {
+  switch (id) {
+    case 'social-media-management':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5.5" fill="#EEF2FF" stroke="#4F46E5" strokeWidth="1.6" />
+          <path d="M10 8.8L15.4 12L10 15.2V8.8Z" fill="#4F46E5" />
+          <circle cx="17.5" cy="6.5" r="2.2" fill="#FF5A36" />
+        </svg>
+      );
+
+    case 'paid-ads-management':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+          <circle cx="11.5" cy="12.5" r="8" fill="#EEF2FF" stroke="#4F46E5" strokeWidth="1.6" />
+          <circle cx="11.5" cy="12.5" r="4.2" stroke="#4F46E5" strokeWidth="1.6" />
+          <circle cx="11.5" cy="12.5" r="1.7" fill="#FF5A36" />
+          <path d="M13 11L19.5 4.5M19.5 4.5H16M19.5 4.5V8" stroke="#FF5A36" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+
+    case 'seo-service':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+          <rect x="3.5" y="13.5" width="3.8" height="6.5" rx="1.4" fill="#C7D2FE" />
+          <rect x="9.6" y="9.5" width="3.8" height="10.5" rx="1.4" fill="#4F46E5" />
+          <rect x="15.7" y="4.5" width="4.2" height="15.5" rx="1.6" fill="#FF5A36" />
+        </svg>
+      );
+
+    case 'website-development':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+          <rect x="2.5" y="4" width="19" height="14.5" rx="3.5" fill="#EEF2FF" stroke="#4F46E5" strokeWidth="1.6" />
+          <path d="M2.5 8.5H21.5" stroke="#4F46E5" strokeWidth="1.4" strokeOpacity="0.45" />
+          <circle cx="5.7" cy="6.3" r="0.9" fill="#FF5A36" />
+          <circle cx="8.5" cy="6.3" r="0.9" fill="#4F46E5" />
+          <path d="M9 12L7 13.7L9 15.4M15 12L17 13.7L15 15.4M12.8 11.4L11.2 15.9" stroke="#4F46E5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+
+    case 'business-setup-with-ai':
+    default:
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+          <circle cx="12" cy="12" r="3.4" fill="#4F46E5" />
+          <circle cx="12" cy="4.2" r="1.9" fill="#FF5A36" />
+          <circle cx="19.2" cy="12" r="1.9" fill="#4F46E5" />
+          <circle cx="12" cy="19.8" r="1.9" fill="#4F46E5" />
+          <circle cx="4.8" cy="12" r="1.9" fill="#FF5A36" />
+          <path d="M12 6.1V8.6M12 15.4V17.9M6.7 12H8.6M15.4 12H17.3" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      );
+  }
+}
+
 export function ServiceIcon3D({ id, className = 'w-11 h-11' }) {
   switch (id) {
     case 'social-media-management':
