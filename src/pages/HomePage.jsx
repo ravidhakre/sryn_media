@@ -97,10 +97,10 @@ export default function HomePage() {
       {/* Persistent Fixed Background 3D Scrollytelling Canvas */}
       <HomeScrollytellingCanvas progressRef={scrollProgressRef} />
 
-      {/* Subtle Floating Desktop 3D Chapter Rail */}
+      {/* Subtle Floating Desktop 3D Chapter Rail (wide screens only so it never overlaps cards) */}
       <aside
         aria-label="3D Story Chapters"
-        className="fixed right-5 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-2.5 xl:flex"
+        className="fixed right-5 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-2.5 2xl:flex"
       >
         <div className="glass-card rounded-2xl p-2.5">
           {SCROLL_CHAPTERS.map((chap) => {

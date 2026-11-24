@@ -12,17 +12,15 @@ import {
 import { SPATIAL_8D_SLIDES } from '../data/siteData';
 
 /**
- * 5-Slide 8D Spatial Scrolling Slider
- * Combines 3D cylindrical coverflow orbit + multi-layer internal depth parallax (8D feel)
- * + horizontal wheel / drag / mobile touch-swipe + auto-orbit + spatial timeline rail.
+ * Luxury 5-Slide Expanding Architectural Cinema Showcase (8D Parallax Depth)
+ * - Desktop: 5 side-by-side fluid expanding glass blades (zero overlapping cutoffs)
+ *   with mouse-driven 8D image parallax, specular sheen, horizontal scroll, & auto-progress.
+ * - Mobile: Crisp full-width swipeable cinema card + clean 5-pill switcher.
  */
 export default function Spatial8DSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
-  );
 
   const stageRef = useRef(null);
   const touchStartX = useRef(0);
@@ -30,12 +28,7 @@ export default function Spatial8DSlider() {
   const wheelLock = useRef(0);
 
   const total = SPATIAL_8D_SLIDES.length;
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', onResize, { passive: true });
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+  const activeSlide = SPATIAL_8D_SLIDES[activeIndex];
 
   const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % total);
@@ -45,26 +38,17 @@ export default function Spatial8DSlider() {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Smooth auto-orbit
   useEffect(() => {
     if (!autoPlay) return;
-    const id = setInterval(nextSlide, 4800);
+    const id = setInterval(nextSlide, 5200);
     return () => clearInterval(id);
   }, [autoPlay, nextSlide]);
 
-  // Compute circular signed offset (-2, -1, 0, +1, +2) for seamless 5-slide 8D loop
-  const getOffset = (idx) => {
-    let diff = idx - activeIndex;
-    if (diff > total / 2) diff -= total;
-    if (diff < -total / 2) diff += total;
-    return diff;
-  };
-
-  // Horizontal wheel / shift-wheel scrolling on desktop stage
+  // Smooth horizontal trackpad / shift-wheel scrubbing across all 5 panels
   const handleWheel = (e) => {
     const absX = Math.abs(e.deltaX);
     const absY = Math.abs(e.deltaY);
-    if (absX < 18 && !(e.shiftKey && absY > 18)) return;
+    if (absX < 20 && !(e.shiftKey && absY > 20)) return;
     const now = Date.now();
     if (now - wheelLock.current < 380) return;
     wheelLock.current = now;
@@ -74,9 +58,9 @@ export default function Spatial8DSlider() {
     else prevSlide();
   };
 
-  // Multi-layer 8D internal pointer parallax on active card
+  // Subtle 8D internal parallax on active cinema panel
   const handleMouseMove = (e) => {
-    if (isMobile || !stageRef.current) return;
+    if (!stageRef.current) return;
     const rect = stageRef.current.getBoundingClientRect();
     const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
     const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
@@ -85,7 +69,7 @@ export default function Spatial8DSlider() {
 
   const handleMouseLeave = () => setPointer({ x: 0, y: 0 });
 
-  // Touch swipe handlers for mobile
+  // Touch swipe for mobile
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
@@ -94,35 +78,37 @@ export default function Spatial8DSlider() {
   const handleTouchEnd = (e) => {
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     const dy = e.changedTouches[0].clientY - touchStartY.current;
-    if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy)) {
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
       setAutoPlay(false);
       if (dx < 0) nextSlide();
       else prevSlide();
     }
   };
 
+  const shortBladeLabel = (subtitle) =>
+    subtitle
+      .replace(' Management', '')
+      .replace('Business Setup with AI', 'AI Setup')
+      .replace('Website Development', '3D Web Dev')
+      .replace('SEO Service', 'SEO #1');
+
   return (
     <div className="mt-12 sm:mt-16 lg:mt-20">
-      {/* Top 8D Slider Control Header */}
-      <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      {/* Clean Editorial Header Row */}
+      <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#4F46E5]/15 bg-white/85 px-3.5 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#4F46E5] backdrop-blur-md">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#4F46E5]/15 bg-white/90 px-3.5 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#4F46E5] shadow-sm backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5 text-[#FF5A36]" />
-            8D Spatial Scrolling Showcase · 0{activeIndex + 1} / 0{total}
-          </div>
-          <p className="mt-2 text-xs text-[#4B5563] sm:text-sm">
-            {isMobile
-              ? 'Swipe left or right to glide through all 5 luxury service dimensions.'
-              : 'Hover for 8D depth parallax, click side slides, or scroll horizontally across all 5 services.'}
-          </p>
+            Signature Capabilities · 0{activeIndex + 1} / 0{total}
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => setAutoPlay((p) => !p)}
-            aria-label={autoPlay ? 'Pause 8D orbit' : 'Play 8D orbit'}
-            className="inline-flex h-10 items-center gap-1.5 rounded-full border border-[#E5E7EB] bg-white/90 px-3.5 font-mono text-[11px] font-semibold text-[#4B5563] shadow-sm backdrop-blur-md transition hover:border-[#4F46E5] hover:text-[#4F46E5]"
+            aria-label={autoPlay ? 'Pause auto showcase' : 'Play auto showcase'}
+            className="inline-flex h-10 items-center gap-1.5 rounded-full border border-[#E5E7EB] bg-white px-3.5 font-mono text-[11px] font-semibold text-[#4B5563] shadow-sm transition hover:border-[#4F46E5] hover:text-[#4F46E5]"
           >
             {autoPlay ? (
               <>
@@ -132,7 +118,7 @@ export default function Spatial8DSlider() {
             ) : (
               <>
                 <Play className="h-3.5 w-3.5 text-[#4F46E5]" />
-                <span>Orbit</span>
+                <span>Play</span>
               </>
             )}
           </button>
@@ -143,8 +129,8 @@ export default function Spatial8DSlider() {
               setAutoPlay(false);
               prevSlide();
             }}
-            aria-label="Previous 8D slide"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E7EB] bg-white/90 text-[#111827] shadow-sm backdrop-blur-md transition hover:border-[#4F46E5] hover:text-[#4F46E5] active:scale-95"
+            aria-label="Previous slide"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E7EB] bg-white text-[#111827] shadow-sm transition hover:border-[#4F46E5] hover:text-[#4F46E5] active:scale-95"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -154,212 +140,182 @@ export default function Spatial8DSlider() {
               setAutoPlay(false);
               nextSlide();
             }}
-            aria-label="Next 8D slide"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E7EB] bg-white/90 text-[#111827] shadow-sm backdrop-blur-md transition hover:border-[#4F46E5] hover:text-[#4F46E5] active:scale-95"
+            aria-label="Next slide"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E7EB] bg-white text-[#111827] shadow-sm transition hover:border-[#4F46E5] hover:text-[#4F46E5] active:scale-95"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>
 
-      {/* 8D Perspective Spatial Stage */}
+      {/* =========================================================
+          DESKTOP (lg+): 5-PANEL EXPANDING ARCHITECTURAL ACCORDION
+          Zero cut-off text, fluid luxury cinema motion + 8D parallax
+      ========================================================= */}
       <div
         ref={stageRef}
         onWheel={handleWheel}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        className="relative mx-auto h-[490px] w-full select-none overflow-hidden rounded-[32px] sm:h-[530px] lg:h-[560px]"
-        style={{ perspective: isMobile ? '1100px' : '1850px' }}
+        className="hidden h-[500px] w-full gap-3 lg:flex xl:h-[530px]"
       >
-        {/* Subtle Orbital Halo Floor Glow */}
-        <div
-          className="pointer-events-none absolute inset-x-10 bottom-4 h-24 rounded-full opacity-55 blur-3xl transition-all duration-700"
-          style={{
-            background:
-              activeIndex % 2 === 0
-                ? 'radial-gradient(ellipse at center, rgba(79,70,229,0.22), rgba(255,90,54,0.12), transparent 72%)'
-                : 'radial-gradient(ellipse at center, rgba(255,90,54,0.22), rgba(79,70,229,0.12), transparent 72%)',
-          }}
-        />
-
-        {/* All 5 Slides Orbiting in 3D/8D Space */}
-        <div
-          className="relative flex h-full w-full items-center justify-center"
-          style={{ transformStyle: 'preserve-3d' }}
-        >
-          {SPATIAL_8D_SLIDES.map((slide, idx) => {
-            const offset = getOffset(idx);
-            const absOffset = Math.abs(offset);
-            const isCenter = offset === 0;
-
-            // Spatial geometry coordinates tuned cleanly for Mobile vs Desktop
-            const tx = isMobile
-              ? offset * 76 // Compact peek stack on mobile
-              : offset * 335; // Wide cinematic 5-card arc on desktop
-            const tz = isMobile
-              ? -absOffset * 130
-              : -absOffset * 210 - (absOffset === 2 ? 75 : 0);
-            const ry = isMobile ? offset * -14 : offset * -24;
-            const rx = isCenter ? -pointer.y * 5.5 : 0;
-            const ryActive = isCenter ? pointer.x * 7.5 : ry;
-            const scale = isMobile
-              ? Math.max(0.76, 1 - absOffset * 0.12)
-              : Math.max(0.72, 1 - absOffset * 0.13);
-            const opacity = isMobile
-              ? absOffset > 1
-                ? 0
-                : 1 - absOffset * 0.45
-              : absOffset === 0
-              ? 1
-              : absOffset === 1
-              ? 0.88
-              : 0.52;
-            const blurPx = absOffset === 0 ? 0 : absOffset === 1 ? 0.4 : 1.8;
-
-            return (
-              <div
-                key={slide.id}
-                onClick={() => {
-                  if (!isCenter) {
-                    setAutoPlay(false);
-                    setActiveIndex(idx);
-                  }
-                }}
+        {SPATIAL_8D_SLIDES.map((slide, idx) => {
+          const isActive = activeIndex === idx;
+          return (
+            <div
+              key={slide.id}
+              onClick={() => {
+                setAutoPlay(false);
+                setActiveIndex(idx);
+              }}
+              onMouseEnter={() => {
+                if (!isActive) {
+                  setActiveIndex(idx);
+                }
+              }}
+              className={`group relative overflow-hidden rounded-[28px] border transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                isActive
+                  ? 'flex-[4.8] cursor-default border-[#4F46E5]/30 bg-white shadow-[0_30px_70px_-24px_rgba(79,70,229,0.22),0_10px_28px_-12px_rgba(17,24,39,0.1)]'
+                  : 'flex-[0.82] cursor-pointer border-[#E5E7EB] bg-white/85 shadow-sm hover:border-[#4F46E5]/35'
+              }`}
+            >
+              {/* Real Photorealistic Service Image */}
+              <img
+                src={slide.image}
+                alt={slide.title}
+                loading={idx < 2 ? 'eager' : 'lazy'}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out"
                 style={{
-                  transform: `translate3d(${tx}px, ${absOffset * 8}px, ${tz}px) rotateY(${ryActive}deg) rotateX(${rx}deg) scale(${scale})`,
-                  opacity,
-                  zIndex: 30 - absOffset * 8,
-                  filter: blurPx > 0 ? `blur(${blurPx}px)` : 'none',
-                  transformStyle: 'preserve-3d',
-                  transition: isCenter
-                    ? 'transform 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 420ms ease, filter 420ms ease'
-                    : 'transform 680ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms ease, filter 500ms ease',
+                  transform: isActive
+                    ? `scale(1.06) translate3d(${-pointer.x * 12}px, ${-pointer.y * 8}px, 0px)`
+                    : 'scale(1.04)',
                 }}
-                className={`absolute w-[90%] max-w-[360px] sm:w-[440px] sm:max-w-none lg:w-[510px] ${
-                  isCenter ? 'cursor-default' : 'cursor-pointer'
+              />
+
+              {/* Airy Light Studio Scrim */}
+              <div
+                className={`pointer-events-none absolute inset-0 transition-all duration-500 ${
+                  isActive
+                    ? 'bg-gradient-to-t from-white via-white/35 to-transparent'
+                    : 'bg-white/70 backdrop-blur-[2px] group-hover:bg-white/50'
+                }`}
+              />
+
+              {/* Subtle 8D Specular Light Sweep on Active Panel */}
+              {isActive && (
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-55 transition-opacity duration-300"
+                  style={{
+                    background: `radial-gradient(circle at ${50 + pointer.x * 35}% ${
+                      40 + pointer.y * 35
+                    }%, rgba(255,255,255,0.65), transparent 58%)`,
+                  }}
+                />
+              )}
+
+              {/* COLLAPSED BLADE CONTENT (Clean Vertical Spine — Zero Clutter) */}
+              <div
+                className={`absolute inset-0 flex flex-col items-center justify-between py-6 transition-opacity duration-300 ${
+                  isActive ? 'pointer-events-none opacity-0' : 'opacity-100'
                 }`}
               >
-                <div
-                  className={`group relative overflow-hidden rounded-[28px] border bg-white/90 shadow-glass backdrop-blur-xl transition-shadow duration-500 ${
-                    isCenter
-                      ? 'border-[#4F46E5]/35 shadow-[0_32px_80px_-24px_rgba(79,70,229,0.24),0_12px_32px_-12px_rgba(255,90,54,0.14)] ring-1 ring-white'
-                      : 'border-[#E5E7EB] hover:border-[#4F46E5]/35'
-                  }`}
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  {/* LAYER 1: Real Photorealistic Service Image with 8D Parallax Pan */}
-                  <div className="relative h-[225px] w-full overflow-hidden bg-[#F3F4F6] sm:h-[260px]">
-                    <img
-                      src={slide.image}
-                      alt={slide.title}
-                      loading={idx < 2 ? 'eager' : 'lazy'}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out"
-                      style={{
-                        transform: isCenter
-                          ? `scale(1.08) translate3d(${-pointer.x * 14}px, ${-pointer.y * 10}px, 0px)`
-                          : 'scale(1.02)',
-                      }}
-                    />
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#E5E7EB] bg-white/95 font-mono text-xs font-bold text-[#4F46E5] shadow-sm">
+                  {slide.code}
+                </span>
 
-                    {/* Soft Airy Light Editorial Scrim */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent" />
+                <div className="flex flex-1 items-center justify-center px-2">
+                  <span
+                    className="whitespace-nowrap font-display text-sm font-bold tracking-wide text-[#111827] transition-colors group-hover:text-[#4F46E5]"
+                    style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+                  >
+                    {shortBladeLabel(slide.subtitle)}
+                  </span>
+                </div>
 
-                    {/* Dynamic Specular Chromatic Light Sheen */}
-                    {isCenter && (
-                      <div
-                        className="pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-300"
-                        style={{
-                          background: `radial-gradient(circle at ${50 + pointer.x * 35}% ${
-                            45 + pointer.y * 35
-                          }%, rgba(255,255,255,0.6), transparent 62%)`,
-                        }}
-                      />
-                    )}
+                <span className="rounded-full border border-white/80 bg-white/90 px-2.5 py-1 font-mono text-[10px] font-bold text-[#FF5A36] shadow-sm">
+                  {slide.metric}
+                </span>
+              </div>
 
-                    {/* LAYER 2: Floating Top 8D Glass HUD Pills */}
-                    <div
-                      className="absolute left-4 right-4 top-4 flex items-center justify-between gap-2"
-                      style={{ transform: isCenter ? 'translateZ(30px)' : 'none' }}
-                    >
-                      <span
-                        className="rounded-full border border-white/80 bg-white/90 px-3 py-1 font-mono text-[10.5px] font-bold uppercase tracking-wider shadow-sm backdrop-blur-md"
-                        style={{ color: slide.accent }}
-                      >
-                        {slide.code} · {slide.badge}
-                      </span>
+              {/* EXPANDED ACTIVE PANEL CONTENT (Luxury Cinema Glass Card) */}
+              <div
+                className={`absolute inset-0 flex flex-col justify-between p-6 transition-all duration-500 ${
+                  isActive
+                    ? 'translate-y-0 opacity-100 delay-100'
+                    : 'pointer-events-none translate-y-4 opacity-0'
+                }`}
+              >
+                {/* Top Floating Glass Badges */}
+                <div className="flex items-center justify-between gap-3">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/95 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-[#4F46E5] shadow-sm backdrop-blur-md">
+                    <span>{slide.code}</span>
+                    <span className="h-1 w-1 rounded-full bg-[#FF5A36]" />
+                    <span>{slide.badge}</span>
+                  </span>
 
-                      <div className="flex items-center gap-1.5 rounded-full border border-white/80 bg-white/95 px-3 py-1 shadow-sm backdrop-blur-md">
-                        <span
-                          className="font-display text-sm font-extrabold"
-                          style={{ color: slide.accent }}
-                        >
-                          {slide.metric}
-                        </span>
-                        <span className="hidden font-mono text-[10px] font-medium text-[#4B5563] sm:inline">
-                          {slide.metricLabel}
-                        </span>
-                      </div>
+                  <div className="flex items-center gap-2 rounded-full border border-white/80 bg-white/95 px-4 py-1.5 shadow-sm backdrop-blur-md">
+                    <span className="font-display text-lg font-extrabold text-[#FF5A36]">
+                      {slide.metric}
+                    </span>
+                    <span className="font-mono text-[11px] font-semibold text-[#4B5563]">
+                      {slide.metricLabel}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bottom Floating Frosted Editorial Panel */}
+                <div className="rounded-[22px] border border-white/90 bg-white/95 p-6 shadow-[0_20px_45px_-16px_rgba(17,24,39,0.14)] backdrop-blur-xl">
+                  <div className="flex items-start justify-between gap-6">
+                    <div className="min-w-0 flex-1">
+                      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4F46E5]">
+                        {slide.subtitle}
+                      </p>
+                      <h3 className="mt-1.5 font-display text-2xl font-extrabold leading-tight text-[#111827] xl:text-[28px]">
+                        {slide.title}
+                      </h3>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#4B5563]">
+                        {slide.description}
+                      </p>
                     </div>
+
+                    <Link
+                      to={slide.link}
+                      onClick={(e) => e.stopPropagation()}
+                      className="btn-coral shrink-0 px-5 py-3 text-xs xl:px-6 xl:text-sm"
+                    >
+                      <span>{slide.linkLabel}</span>
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
                   </div>
 
-                  {/* LAYER 3: Elevated Luxury Editorial Content Panel */}
-                  <div
-                    className="relative bg-white/95 p-5 sm:p-6"
-                    style={{ transform: isCenter ? 'translateZ(42px)' : 'none' }}
-                  >
-                    <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#4F46E5]">
-                      {slide.subtitle}
-                    </p>
-
-                    <h3 className="mt-1.5 font-display text-xl font-bold leading-snug text-[#111827] sm:text-2xl">
-                      {slide.title}
-                    </h3>
-
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-[#4B5563] sm:text-sm">
-                      {slide.description}
-                    </p>
-
-                    <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#F3F4F6] pt-3.5">
+                    <div className="flex flex-wrap gap-2">
                       {slide.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-[#E5E7EB] bg-[#F9FAFB] px-2.5 py-1 text-[10.5px] font-semibold text-[#374151]"
+                          className="rounded-full border border-[#E5E7EB] bg-[#F9FAFB] px-3 py-1 text-[11px] font-semibold text-[#374151]"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
-
-                    <div className="mt-5 flex items-center justify-between border-t border-[#E5E7EB]/80 pt-4">
-                      <Link
-                        to={slide.link}
-                        className="inline-flex items-center gap-1.5 text-sm font-bold text-[#4F46E5] transition-colors hover:text-[#FF5A36]"
-                      >
-                        <span>{slide.linkLabel}</span>
-                        <ArrowUpRight className="h-4 w-4" />
-                      </Link>
-                      {isCenter ? (
-                        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase text-[#FF5A36]">
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#FF5A36] animate-pulse" />
-                          8D Active
-                        </span>
-                      ) : (
-                        <span className="font-mono text-[10px] text-[#9CA3AF]">Click to Focus</span>
-                      )}
-                    </div>
+                    <span className="font-mono text-[10.5px] font-semibold text-[#6B7280]">
+                      Hover any side panel to switch →
+                    </span>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Bottom 5-Slide Interactive Spatial Timeline Rail */}
-      <div className="mt-4 flex flex-col items-center gap-3">
-        <div className="no-scrollbar flex max-w-full items-center gap-2 overflow-x-auto pb-1">
+      {/* =========================================================
+          MOBILE & TABLET (< lg): CRISP SWIPEABLE FULL-WIDTH CARD
+      ========================================================= */}
+      <div className="lg:hidden">
+        {/* Scrollable 5-Pill Service Tabs */}
+        <div className="no-scrollbar mb-4 flex gap-2 overflow-x-auto pb-1">
           {SPATIAL_8D_SLIDES.map((s, idx) => {
             const active = activeIndex === idx;
             return (
@@ -370,25 +326,100 @@ export default function Spatial8DSlider() {
                   setAutoPlay(false);
                   setActiveIndex(idx);
                 }}
-                className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold transition-all duration-300 ${
+                className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-2 text-xs font-semibold transition-all ${
                   active
                     ? 'border-[#4F46E5] bg-[#4F46E5] text-white shadow-indigo'
-                    : 'border-[#E5E7EB] bg-white/85 text-[#4B5563] hover:border-[#4F46E5]/40 hover:text-[#111827]'
+                    : 'border-[#E5E7EB] bg-white text-[#4B5563]'
                 }`}
               >
                 <span className={`font-mono text-[10px] ${active ? 'text-[#FFD6CC]' : 'text-[#9CA3AF]'}`}>
                   {s.code}
                 </span>
-                <span>{s.subtitle.replace(' Management', '').replace(' with AI', ' AI')}</span>
+                <span>{shortBladeLabel(s.subtitle)}</span>
               </button>
             );
           })}
         </div>
 
-        <div className="inline-flex items-center gap-1.5 font-mono text-[10.5px] text-[#6B7280] sm:hidden">
-          <MoveHorizontal className="h-3.5 w-3.5 text-[#FF5A36]" />
-          <span>Swipe card left or right</span>
+        {/* Full-Width Swipeable Showcase Card */}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="overflow-hidden rounded-[26px] border border-[#E5E7EB] bg-white shadow-glass"
+        >
+          <div className="relative h-[230px] w-full overflow-hidden bg-[#F3F4F6] sm:h-[280px]">
+            <img
+              src={activeSlide.image}
+              alt={activeSlide.title}
+              className="h-full w-full object-cover transition-all duration-500"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
+
+            <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-2">
+              <span className="rounded-full border border-white/80 bg-white/95 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-[#4F46E5] shadow-sm">
+                {activeSlide.code} · {activeSlide.badge}
+              </span>
+              <span className="rounded-full border border-white/80 bg-white/95 px-3 py-1 font-display text-sm font-extrabold text-[#FF5A36] shadow-sm">
+                {activeSlide.metric}
+              </span>
+            </div>
+          </div>
+
+          <div className="p-5 sm:p-6">
+            <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#4F46E5]">
+              {activeSlide.subtitle}
+            </p>
+            <h3 className="mt-1.5 font-display text-xl font-extrabold text-[#111827] sm:text-2xl">
+              {activeSlide.title}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-[#4B5563]">
+              {activeSlide.description}
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {activeSlide.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-[#E5E7EB] bg-[#F9FAFB] px-2.5 py-1 text-[11px] font-semibold text-[#374151]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#F3F4F6] pt-4">
+              <Link to={activeSlide.link} className="btn-coral w-full py-3 text-sm">
+                <span>{activeSlide.linkLabel}</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
+
+        <div className="mt-3 flex items-center justify-center gap-1.5 font-mono text-[10.5px] text-[#6B7280]">
+          <MoveHorizontal className="h-3.5 w-3.5 text-[#FF5A36]" />
+          <span>Swipe card or tap tabs above</span>
+        </div>
+      </div>
+
+      {/* Minimal Progress Indicator Dots (Desktop) */}
+      <div className="mt-5 hidden items-center justify-center gap-2 lg:flex">
+        {SPATIAL_8D_SLIDES.map((s, idx) => (
+          <button
+            key={s.id}
+            type="button"
+            onClick={() => {
+              setAutoPlay(false);
+              setActiveIndex(idx);
+            }}
+            aria-label={`View ${s.title}`}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              activeIndex === idx
+                ? 'w-10 bg-gradient-to-r from-[#4F46E5] to-[#FF5A36]'
+                : 'w-2 bg-[#D1D5DB] hover:bg-[#4F46E5]/50'
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
